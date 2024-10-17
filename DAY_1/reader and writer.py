@@ -108,3 +108,5 @@ df_customers.sort(col("customer_city").desc()).display()
 # COMMAND ----------
 
 df_joined.groupBy(df_customers["customer_id"]).count().orderBy(df_customers["customer_id"]).display()
+
+##Test pull
