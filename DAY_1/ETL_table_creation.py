@@ -1,5 +1,10 @@
 # Databricks notebook source
-# MAGIC %run /Workspace/Users/bhatshreya98@gmail.com/DAY_1/includes
+#%run /Workspace/Users/bhatshreya98@gmail.com/DAY_1/includes
+
+
+# COMMAND ----------
+
+# MAGIC %run /Workspace/Users/bhatshreya98@gmail.com/azure_demo/DAY_1/includes
 
 # COMMAND ----------
 
@@ -41,3 +46,12 @@ df_orders.write.mode("overwrite").saveAsTable("order_dates")
 # MAGIC
 # MAGIC Create table products as
 # MAGIC select *, current_timestamp() as ingestion_date from json.`/Volumes/test_databricks/default/raw/products.json`
+
+# COMMAND ----------
+
+dbutils.widgets.text("environment","dev")
+
+# COMMAND ----------
+
+v=dbutils.widgets.get("environment")
+v

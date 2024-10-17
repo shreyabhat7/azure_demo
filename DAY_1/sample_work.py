@@ -57,7 +57,7 @@ users=[
 
 # COMMAND ----------
 
-df_users=spark.createDataFrame(data=users)
+spark.createDataFrame(data=users).display()
 
 # COMMAND ----------
 

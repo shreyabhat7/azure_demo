@@ -1,12 +1,5 @@
 # Databricks notebook source
-# MAGIC %md
-# MAGIC make this structured data
-
-# COMMAND ----------
-
 from pyspark.sql.functions import *
-from pyspark.sql import Row
-import datetime
 
 # COMMAND ----------
 
@@ -37,6 +30,22 @@ dt={
 		]
 }
 
+data=spark.createDataFrame([dt])
+
 # COMMAND ----------
 
-df=spark.createDataFrame(dt)
+data.display()
+
+# COMMAND ----------
+
+data.withColumn("toppings",explode("topping"))\
+.withColumn("toppings_id",col("toppings.id"))\
+.withColumn("toppings_type",col("toppings.type"))\
+.drop("topping")\
+.drop("toppings")\
+.withColumn("batters_list",explode("batters.batter"))\
+.drop("batters")\
+.withColumn("batters_id",col("batters_list.id"))\
+.withColumn("batters_type",col("batters_list.type"))\
+.drop("batters_list").display()
+
