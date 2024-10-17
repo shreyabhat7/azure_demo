@@ -39,7 +39,7 @@ df_customers.write.saveAsTable("customer")
 
 # COMMAND ----------
 
-df.write.saveAsTable("sales")
+df.write.mode("overwrite").saveAsTable("sales")
 
 # COMMAND ----------
 
@@ -86,7 +86,9 @@ df_customers.where("customer_id=2").display()
 # COMMAND ----------
 
 from pyspark.sql.functions import *
-df_customers.where(col("customer_id")=='2' | col("customer_city")=="New Michaelview").display()
+df_customers.where((col("customer_id")==2) | (col("customer_city")=="New Michaelview")).display()
+
+
 
 # COMMAND ----------
 
