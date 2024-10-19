@@ -44,7 +44,24 @@ df_orders.write.mode("overwrite").saveAsTable("order_dates")
 
 # MAGIC %sql
 # MAGIC
-# MAGIC Create table products as
+# MAGIC Create table if not exists products as
+# MAGIC select * from json.`/Volumes/test_databricks/default/raw/products.json`
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select * from products
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select * from json.`/Volumes/test_databricks/default/raw/products.json`
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC
+# MAGIC Create table if not exists products as
 # MAGIC select *, current_timestamp() as ingestion_date from json.`/Volumes/test_databricks/default/raw/products.json`
 
 # COMMAND ----------
@@ -54,4 +71,11 @@ dbutils.widgets.text("environment","dev")
 # COMMAND ----------
 
 v=dbutils.widgets.get("environment")
-v
+
+
+# COMMAND ----------
+
+
+ 
+df_sales.withColumn("env", lit(v)).display()
+ 

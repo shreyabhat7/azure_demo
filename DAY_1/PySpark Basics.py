@@ -104,11 +104,7 @@ df.withColumnRenamed("id","emp_id").display()
 
 # COMMAND ----------
 
-df.withColumnRenamed({"id":"emp_id","name":"emp_name"),"age":"emp_age"}).display()
-
-# COMMAND ----------
-
-df.withColumnRenamed("id":"emp_id","name":"emp_name"),"age":"emp_age").display()
+df.withColumnRenamed("id","emp_id").withColumnRenamed("name","emp_name").withColumnRenamed("age","emp_age").display()
 
 # COMMAND ----------
 
